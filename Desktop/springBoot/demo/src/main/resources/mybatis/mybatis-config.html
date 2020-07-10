@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1894.1">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Verdana; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'PingFang SC'; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'PingFang SC Semibold'; -webkit-text-stroke: #000000}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'PingFang SC'; -webkit-text-stroke: #000000; background-color: #fefeef}
+    li.li4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Menlo; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none; background-color: #fefeef}
+    span.s2 {font: 13.0px 'PingFang SC'; font-kerning: none; background-color: #fefeef}
+    span.s3 {font: 13.0px Verdana; font-kerning: none; background-color: #fefeef}
+    span.s4 {font: 13.0px Menlo; font-kerning: none; background-color: #fefeef}
+    span.s5 {background-color: #fefeef}
+    span.s6 {font-kerning: none}
+    table.t1 {border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #d7d7d7 #d7d7d7 #d7d7d7 #d7d7d7; border-collapse: collapse}
+    td.td1 {width: 50.0px; min-width: 50.0px; background-color: #f9f9f9; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #b3b3b3 #b3b3b3 #b3b3b3 #b3b3b3; padding: 8.0px 14.0px 8.0px 14.0px}
+    td.td2 {width: 438.8px; min-width: 50.0px; background-color: #f9f9f9; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #b3b3b3 #b3b3b3 #b3b3b3 #b3b3b3; padding: 8.0px 14.0px 8.0px 14.0px}
+    td.td3 {width: 167.1px; min-width: 50.0px; background-color: #f9f9f9; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #b3b3b3 #b3b3b3 #b3b3b3 #b3b3b3; padding: 8.0px 14.0px 8.0px 14.0px}
+    td.td4 {width: 80.8px; min-width: 50.0px; background-color: #f9f9f9; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #b3b3b3 #b3b3b3 #b3b3b3 #b3b3b3; padding: 8.0px 14.0px 8.0px 14.0px}
+    td.td5 {width: 50.0px; min-width: 50.0px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #b3b3b3 #b3b3b3 #b3b3b3 #b3b3b3; padding: 8.0px 14.0px 8.0px 14.0px}
+    td.td6 {width: 438.8px; min-width: 50.0px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #b3b3b3 #b3b3b3 #b3b3b3 #b3b3b3; padding: 8.0px 14.0px 8.0px 14.0px}
+    td.td7 {width: 167.1px; min-width: 50.0px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #b3b3b3 #b3b3b3 #b3b3b3 #b3b3b3; padding: 8.0px 14.0px 8.0px 14.0px}
+    td.td8 {width: 80.8px; min-width: 50.0px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #b3b3b3 #b3b3b3 #b3b3b3 #b3b3b3; padding: 8.0px 14.0px 8.0px 14.0px}
+    ul.ul1 {list-style-type: disc}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1"><b>settings</b></span><span class="s2"><b>　　</b></span></p>
+<p class="p2"><span class="s1">　　这是</span><span class="s3"> MyBatis </span><span class="s1">中极为重要的调整设置，它们会改变</span><span class="s3"> MyBatis </span><span class="s1">的运行时行为。</span><span class="s3"> </span><span class="s1">下表描述了设置中各项的意图、默认值等。</span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p3"><span class="s2"><b>设置名</b></span></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p3"><span class="s2"><b>描述</b></span></p>
+      </td>
+      <td valign="middle" class="td3">
+        <p class="p3"><span class="s2"><b>有效值</b></span></p>
+      </td>
+      <td valign="middle" class="td4">
+        <p class="p3"><span class="s2"><b>默认值</b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">cacheEnabled</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">全局地开启或关闭配置文件中的所有映射器已经配置的任何缓存。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">true</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">lazyLoadingEnabled</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">延迟加载的全局开关。当开启时，所有关联对象都会延迟加载。</span><span class="s3"> </span><span class="s1">特定关联关系中可通过设置</span><span class="s3"> </span><span class="s4">fetchType</span><span class="s1">属性来覆盖该项的开关状态。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">false</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">aggressiveLazyLoading</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">当开启时，任何方法的调用都会加载该对象的所有属性。</span><span class="s3"> </span><span class="s1">否则，每个属性会按需加载（参考</span><span class="s3"> </span><span class="s4">lazyLoadTriggerMethods</span><span class="s3">)</span><span class="s1">。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">false </span><span class="s2">（在</span><span class="s1"> 3.4.1 </span><span class="s2">及之前的版本默认值为</span><span class="s1"> true</span><span class="s2">）</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">multipleResultSetsEnabled</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">是否允许单一语句返回多结果集（需要驱动支持）。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">true</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">useColumnLabel</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">使用列标签代替列名。不同的驱动在这方面会有不同的表现，具体可参考相关驱动文档或通过测试这两种不同的模式来观察所用驱动的结果。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">true</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">useGeneratedKeys</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">允许</span><span class="s3"> JDBC </span><span class="s1">支持自动生成主键，需要驱动支持。</span><span class="s3"> </span><span class="s1">如果设置为</span><span class="s3"> true </span><span class="s1">则这个设置强制使用自动生成主键，尽管一些驱动不能支持但仍可正常工作（比如</span><span class="s3"> Derby</span><span class="s1">）。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">False</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">autoMappingBehavior</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定</span><span class="s3"> MyBatis </span><span class="s1">应如何自动映射列到字段或属性。</span><span class="s3"> NONE </span><span class="s1">表示取消自动映射；</span><span class="s3">PARTIAL </span><span class="s1">只会自动映射没有定义嵌套结果集映射的结果集。</span><span class="s3"> FULL </span><span class="s1">会自动映射任意复杂的结果集（无论是否嵌套）。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">NONE, PARTIAL, FULL</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">PARTIAL</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">autoMappingUnknownColumnBehavior</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定发现自动映射目标未知列（或者未知属性类型）的行为。</span></p>
+        <ul class="ul1">
+          <li class="li4"><span class="s5"></span><span class="s1">NONE</span><span class="s3">: </span><span class="s2">不做任何反应</span></li>
+          <li class="li4"><span class="s5"></span><span class="s1">WARNING</span><span class="s3">: </span><span class="s2">输出提醒日志</span><span class="s3"> (</span><span class="s1">'org.apache.ibatis.session.AutoMappingUnknownColumnBehavior'</span><span class="s2">的日志等级必须设置为</span><span class="s3"> </span><span class="s1">WARN</span><span class="s3">)</span></li>
+          <li class="li4"><span class="s5"></span><span class="s1">FAILING</span><span class="s3">: </span><span class="s2">映射失败</span><span class="s3"> (</span><span class="s2">抛出</span><span class="s3"> </span><span class="s1">SqlSessionException</span><span class="s3">)</span></li>
+        </ul>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">NONE, WARNING, FAILING</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">NONE</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">defaultExecutorType</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">配置默认的执行器。</span><span class="s3">SIMPLE </span><span class="s1">就是普通的执行器；</span><span class="s3">REUSE </span><span class="s1">执行器会重用预处理语句（</span><span class="s3">prepared statements</span><span class="s1">）；</span><span class="s3"> BATCH </span><span class="s1">执行器将重用语句并执行批量更新。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">SIMPLE REUSE BATCH</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">SIMPLE</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">defaultStatementTimeout</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">设置超时时间，它决定驱动等待数据库响应的秒数。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">任意正整数</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s2">未设置</span><span class="s1"> (null)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">defaultFetchSize</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">为驱动的结果集获取数量（</span><span class="s3">fetchSize</span><span class="s1">）设置一个提示值。此参数只可以在查询设置中被覆盖。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">任意正整数</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s2">未设置</span><span class="s1"> (null)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">safeRowBoundsEnabled</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">允许在嵌套语句中使用分页（</span><span class="s3">RowBounds</span><span class="s1">）。如果允许使用则设置为</span><span class="s3"> false</span><span class="s1">。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">False</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">safeResultHandlerEnabled</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">允许在嵌套语句中使用分页（</span><span class="s3">ResultHandler</span><span class="s1">）。如果允许使用则设置为</span><span class="s3"> false</span><span class="s1">。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">True</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">mapUnderscoreToCamelCase</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">是否开启自动驼峰命名规则（</span><span class="s3">camel case</span><span class="s1">）映射，即从经典数据库列名</span><span class="s3"> A_COLUMN </span><span class="s1">到经典</span><span class="s3"> Java </span><span class="s1">属性名</span><span class="s3"> aColumn </span><span class="s1">的类似映射。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">False</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">localCacheScope</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s3">MyBatis </span><span class="s1">利用本地缓存机制（</span><span class="s3">Local Cache</span><span class="s1">）防止循环引用（</span><span class="s3">circular references</span><span class="s1">）和加速重复嵌套查询。</span><span class="s3"> </span><span class="s1">默认值为</span><span class="s3"> SESSION</span><span class="s1">，这种情况下会缓存一个会话中执行的所有查询。</span><span class="s3"> </span><span class="s1">若设置值为</span><span class="s3"> STATEMENT</span><span class="s1">，本地会话仅用在语句执行上，对相同</span><span class="s3"> SqlSession </span><span class="s1">的不同调用将不会共享数据。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">SESSION | STATEMENT</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">SESSION</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">jdbcTypeForNull</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">当没有为参数提供特定的</span><span class="s3"> JDBC </span><span class="s1">类型时，为空值指定</span><span class="s3"> JDBC </span><span class="s1">类型。</span><span class="s3"> </span><span class="s1">某些驱动需要指定列的</span><span class="s3"> JDBC </span><span class="s1">类型，多数情况直接用一般类型即可，比如</span><span class="s3"> NULL</span><span class="s1">、</span><span class="s3">VARCHAR </span><span class="s1">或</span><span class="s3"> OTHER</span><span class="s1">。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">JdbcType </span><span class="s2">常量，常用值：</span><span class="s1">NULL, VARCHAR </span><span class="s2">或</span><span class="s1"> OTHER</span><span class="s2">。</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">OTHER</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">lazyLoadTriggerMethods</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定哪个对象的方法触发一次延迟加载。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">用逗号分隔的方法列表。</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">equals,clone,hashCode,toString</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">defaultScriptingLanguage</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定动态</span><span class="s3"> SQL </span><span class="s1">生成的默认语言。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">一个类型别名或完全限定类名。</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">org.apache.ibatis.scripting.xmltags.XMLLanguageDriver</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">defaultEnumTypeHandler</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p1"><span class="s2">指定</span><span class="s1"> Enum </span><span class="s2">使用的默认</span><span class="s1"> </span><span class="s4">TypeHandler</span><span class="s1"> </span><span class="s2">。（新增于</span><span class="s1"> 3.4.5</span><span class="s2">）</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">一个类型别名或完全限定类名。</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">org.apache.ibatis.type.EnumTypeHandler</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">callSettersOnNulls</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定当结果集中值为</span><span class="s3"> null </span><span class="s1">的时候是否调用映射对象的</span><span class="s3"> setter</span><span class="s1">（</span><span class="s3">map </span><span class="s1">对象时为</span><span class="s3"> put</span><span class="s1">）方法，这在依赖于</span><span class="s3"> Map.keySet() </span><span class="s1">或</span><span class="s3"> null </span><span class="s1">值初始化的时候比较有用。注意基本类型（</span><span class="s3">int</span><span class="s1">、</span><span class="s3">boolean </span><span class="s1">等）是不能设置成</span><span class="s3"> null </span><span class="s1">的。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">false</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">returnInstanceForEmptyRow</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">当返回行的所有列都是空时，</span><span class="s3">MyBatis</span><span class="s1">默认返回</span><span class="s3"> </span><span class="s4">null</span><span class="s1">。</span><span class="s3"> </span><span class="s1">当开启这个设置时，</span><span class="s3">MyBatis</span><span class="s1">会返回一个空实例。</span><span class="s3"> </span><span class="s1">请注意，它也适用于嵌套的结果集</span><span class="s3"> </span><span class="s1">（如集合或关联）。（新增于</span><span class="s3"> 3.4.2</span><span class="s1">）</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">false</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">logPrefix</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定</span><span class="s3"> MyBatis </span><span class="s1">增加到日志名称的前缀。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">任何字符串</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">未设置</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">logImpl</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定</span><span class="s3"> MyBatis </span><span class="s1">所用日志的具体实现，未指定时将自动查找。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">未设置</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">proxyFactory</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定</span><span class="s3"> Mybatis </span><span class="s1">创建具有延迟加载能力的对象所用到的代理工具。</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">CGLIB | JAVASSIST</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">JAVASSIST </span><span class="s2">（</span><span class="s1">MyBatis 3.3 </span><span class="s2">以上）</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">vfsImpl</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p1"><span class="s2">指定</span><span class="s1"> VFS </span><span class="s2">的实现</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">自定义</span><span class="s3"> VFS </span><span class="s1">的实现的类全限定名，以逗号分隔。</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p2"><span class="s1">未设置</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">useActualParamName</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">允许使用方法签名中的名称作为语句参数名称。</span><span class="s3"> </span><span class="s1">为了使用该特性，你的项目必须采用</span><span class="s3"> Java 8 </span><span class="s1">编译，并且加上</span><span class="s3"> </span><span class="s4">-parameters</span><span class="s3"> </span><span class="s1">选项。（新增于</span><span class="s3"> 3.4.1</span><span class="s1">）</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p1"><span class="s1">true | false</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p1"><span class="s1">true</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td5">
+        <p class="p1"><span class="s1">configurationFactory</span></p>
+      </td>
+      <td valign="middle" class="td6">
+        <p class="p2"><span class="s1">指定一个提供</span><span class="s3"> </span><span class="s4">Configuration</span><span class="s3"> </span><span class="s1">实例的类。</span><span class="s3"> </span><span class="s1">这个被返回的</span><span class="s3"> Configuration </span><span class="s1">实例用来加载被反序列化对象的延迟加载属性值。</span><span class="s3"> </span><span class="s1">这个类必须包含一个签名为</span><span class="s4">static Configuration getConfiguration()</span><span class="s3"> </span><span class="s1">的方法。（新增于</span><span class="s3"> 3.2.3</span><span class="s1">）</span></p>
+      </td>
+      <td valign="middle" class="td7">
+        <p class="p2"><span class="s1">类型别名或者全类名</span><span class="s3">.</span></p>
+      </td>
+      <td valign="middle" class="td8">
+        <p class="p5"><span class="s6">未设置</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

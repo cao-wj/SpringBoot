@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>List</title>
+		<!-- 引入 Bootstrap -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<style type="text/css">
+			.list-group{
+				padding-top: 5px;
+			}
+			.list-group-item{
+				padding-left: 8px;
+				padding-right: 8px;
+				font-size: 12px;
+			}
+		    .list-group button { 
+		        background: none;
+		        border: 0;
+		        color: red;
+		        outline: 0;
+		        float: right;
+		        font-weight: bold;
+		        margin-left: 5px;
+		    }
+		</style>
+	</head>
+	<body>
+		<div class="container" id="app"> 
+		    <p v-show="remainTask.length>0">任务列表({{remainTask.length}})</p>
+		    <ul class="list-group">
+				<template v-for="item in remainTask">
+		          <li class="list-group-item">
+		              <span title="编辑任务" @dblclick="editTask(item)">{{item.text}}</span>
+		              <button title="移除任务" @click="deleteTask(item)">&#10007;</button>
+		              <button title="任务完成" @click="complete(item)">&#10004;</button>
+		          </li>
+				</template>
+		    </ul>
+		    <form>
+		        <div class="form-group">
+		          <label for="exampleInputEmail1">任务描述</label>
+		          <input type="text" class="form-control" placeholder="请输入你要添加的任务" v-model="newTask" required>
+		        </div>
+		        <div class="form-group">  
+		            <button class="btn btn-primary" type="submit" @click.prevent="addTask($event)">{{addText}}</button>
+		        </div>
+		    </form>
+		    <p>已完成的Task</p>
+		    <ol class="list-group">
+				<template v-for="item in completeTask">
+					<li class="list-group-item">  
+						{{item.text}}
+					</li>
+				</template>
+		    </ol>
+		</div>
+		<script>
+			//import axios from 'axios';
+			var app = new Vue({
+				el:"#app",
+				data:{
+					tasks:[
+						{text:"Vue.js - 是一套构建用户界面的渐进式框架",complete:false},
+						{text:"Bootstrap 响应式布局",complete:false},
+						{text:"Webpack前端资源模块化管理和打包工具",complete:false},
+						{text:"Yarn 中文手册Yarn 是一个快速、可靠、安全的依赖管理工具",complete:true},
+						{text:"JavaScript语言精粹",complete:false},
+						{text:"JavaScript高级程序设计",complete:true}
+					],
+					addText:"添加任务",
+					newTask:"程序员的修炼之道",
+					editStatus:false,
+					editText:""
+				},
+				methods:{
+					
+					addTask:function(event){
+						//取消form表单的submit,可以在html的@click.prevent设置取消
+						//event.preventDefault();
+						_tasks = this.tasks;
+						if (this.editStatus){
+							if(this.checkTask(this.newTask)){
+								alert("该任务已存在！");
+								return;
+							}
+							_editText = this.editText;
+							_newTask = this.newTask;
+							//修改数组
+							_tasks.some(function(currentValue){
+								if(currentValue.text === _editText){
+									currentValue.text = _newTask;
+									return true;
+								}
+							})
+							this.editStatus = false;
+							this.addText = "添加任务";
+							console.log(_tasks);
+						}else{
+							if(this.checkTask(this.newTask)){
+								alert("该任务已存在！");
+								return;
+							}
+							//数组添加元素
+							_tasks.push({
+								text:this.newTask,
+								complete:false
+							})
+						}
+					},
+					deleteTask:function(item){
+						_tasks = this.tasks;
+						// 遍历数组  map(返回每个元素),foreach(没有返回值),some(return true跳出循环),every(return false跳出循环，return true也需要写)
+						_tasks.some(function(currentValue,index){
+							if(currentValue.text === item.text){
+								//删除当前元素
+								_tasks.splice(index,1);
+								return true;
+							}
+						})
+					},
+					editTask:function(item){
+						this.newTask = item.text;
+						this.editStatus = true;
+						this.editText = item.text;
+						this.addText = "编辑任务";
+					},
+					checkTask:function(checkTask){
+						var isExist = false;
+						_tasks = this.tasks;
+						_tasks.find(function(currentValue){
+							if(checkTask === currentValue.text){
+								isExist = true;
+								return true;
+							}
+							return false;
+						})
+						return isExist;
+					},
+					complete:function(item){
+						item.complete = true;
+					}
+					
+				},
+				computed:{
+					//筛选未完成的记录
+					remainTask:function(){
+						return this.tasks.filter(function(item){
+							return !item.complete;
+						})
+					},
+					//筛选已完成的记录
+					completeTask:function(){
+						return this.tasks.filter(function(item){
+							return item.complete;
+						})
+					}
+				},
+				created() {
+					console.log(this.$data);
+					axios.get("http://localhost:8888/getUserInfo")
+					  .then(function(res){
+						  console.log(res);
+						  alert("连接成功");
+					  }).catch(function(error){
+						  alert("连接失败");
+					  });
+				},
+				updated() {
+					console.log("数据更新");
+				}
+			});
+		</script>
+	</body>
+</html>

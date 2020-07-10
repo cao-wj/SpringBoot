@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>List</title>
+		<!-- 引入 Bootstrap -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<style type="text/css">
+			.form-group{
+				padding-top: 10px;
+				overflow: hidden;
+				margin-bottom: 10px;
+			}
+			.form-group button{
+				float: right;
+				margin-left: 15px;
+				margin-right: 15px;
+			}
+			.form-control{
+				width: 40%;
+			}
+			.left{
+				float: left;
+			}
+			.right{
+				margin-left: 60%;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container" id="app"> 
+			<form>
+				<div class="form-group">
+				<label for="exampleInputEmail1">成绩查询</label>
+				<div>
+				  <input type="text" class="form-control left" placeholder="请输入学生姓名" v-model="inputName" required>
+				  <input type="text" class="form-control right" placeholder="请输入学号" v-model="inputId" required>
+				</div>
+				</div>
+				<div class="form-group">  
+					<button class="btn btn-primary" type="submit" @click.prevent="queryCourseByName()">查询</button>
+					<button class="btn btn-primary" type="submit" @click.prevent="queryAll()">查询全部</button>
+				</div>
+			</form>
+			<p v-show="coursesData.length > 0">学生成绩{{coursesData.length}}</p>
+			<table class="table table-striped">
+				<thead>
+					<td>学号</td>
+					<td>姓名</td>
+					<td>语文</td>
+					<td>数学</td>
+					<td>英语</td>
+					<td>历史</td>
+					<td>生物</td>
+					<td>总分</td>
+				</thead>
+				<tbody>
+					<template v-for="item in coursesData">
+						<tr>
+							<td>{{item.studentId}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.chineseCourse}}</td>
+							<td>{{item.mathCourse}}</td>
+							<td>{{item.englishCourse}}</td>
+							<td>{{item.historyCourse}}</td>
+							<td>{{item.biologicalCourse}}</td>
+							<td>{{item.totalScore}}</td>
+						</tr>
+					</template>
+				</tbody>
+			</table>
+		</div>
+		<script>
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					coursesData:[],
+					inputName:"",
+					inputId:""
+				},
+				methods:{
+					queryCourseByName:function(){
+						var _name = this.inputName;
+						var _id = this.inputId;
+						if (_name.trim() === "" && _id.trim() === "") {
+							alert("请输入名字或学号");
+							this.inputName = "";
+							this.inputId = "";
+							return;
+						}
+						var requestBody = {studentId:"",name:""};
+						if(_id.trim() !== ""){
+							requestBody.studentId = _id;
+						} else {
+							requestBody.name = _name;
+						}
+						
+						axios.post("http://localhost:8888/getCoursesBy",requestBody)
+						  .then(function(rst){
+							  console.log(rst.data);
+							  vm.$data.coursesData = rst.data.resultData;
+						  }).catch(function(err){
+							  console.log("请求失败");
+						  })
+					},
+					queryAll:function(){
+						axios.get("http://localhost:8888/getCourses")
+						.then(function(rst){
+							console.log("请求成功");
+							console.log(rst.data);
+							vm.$data.coursesData = rst.data.resultData;
+						}).catch(function(err){
+							console.log("请求失败");
+						})
+					}
+				},
+				
+				created() {
+					this.queryAll();
+				}
+			});
+		</script>
+	</body>
+</html>

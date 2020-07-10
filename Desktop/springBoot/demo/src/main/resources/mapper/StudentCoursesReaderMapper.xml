@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.StudentCoursesReaderMapper">
+  <resultMap id="studentCourse" type="com.example.demo.bean.StudentCoursesBean">
+    <id column="studentId" property="studentId" />
+    <result column="name" property="name" />
+    <result column="student" property="student" />
+    <result column="Chinese" property="chineseCourse" />
+    <result column="Math" property="mathCourse" />
+    <result column="English" property="englishCourse" />
+    <result column="History" property="historyCourse" />
+    <result column="Biological" property="biologicalCourse" />
+    <result column="TotalScore" property="totalScore" />
+  </resultMap>
+  
+  <select id="getCourses" resultMap="studentCourse">
+      SELECT
+    	stu.studentId,
+    	stu.student,
+    	stu.name,
+    	sum( CASE WHEN co.class = "Chinese" THEN co.score END ) AS Chinese,
+    	sum( CASE WHEN co.class = "Math" THEN co.score END ) AS Math,
+    	sum( CASE WHEN co.class = "English" THEN co.score END ) AS English,
+    	sum( CASE WHEN co.class = "History" THEN co.score END ) AS History,
+    	sum( CASE WHEN co.class = "生物" THEN co.score END ) AS Biological,
+    	sum( co.score ) AS TotalScore 
+      FROM
+    	student AS stu
+    	LEFT JOIN courses AS co ON stu.student = co.student 
+      GROUP BY
+    	stu.studentId,
+    	stu.student,
+    	stu.name 
+      ORDER BY
+    	TotalScore DESC
+  </select>
+  
+  <select id="getCoursesById" resultMap="studentCourse" >
+    SELECT stu.studentId,stu.student,stu.name,
+      sum(case when co.class = "Chinese" then co.score end) as Chinese,
+      sum(case when co.class = "Math" then co.score end) as Math,
+      sum(case when co.class = "English" then co.score end) as English,
+      sum(case when co.class = "History" then co.score end) as History,
+      sum(case when co.class = "生物" then co.score end) as Biological,
+      sum(co.score) as TotalScore
+    FROM student as stu
+    LEFT JOIN courses as co 
+    ON
+    stu.student = co.student 
+    WHERE 
+    <if test="studentId != null">
+      stu.studentId = #{studentId}
+    </if>
+    <if test="name != null">
+      stu.name = #{name,jdbcType=VARCHAR}
+    </if>
+    GROUP BY stu.studentId,stu.student,stu.name
+  </select>
+
+</mapper>

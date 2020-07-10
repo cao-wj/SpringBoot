@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test</title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="div1">{{text}}</div>
+		<button id="btn1" class="btn btn-primary" @click="changeText($event)">修改内容</button>
+		<input id="btn2" type="button" v-bind:value="text" v-on:click="buttonClick()"/>
+		
+		<script>
+			var div1 = new Vue({
+				el:"#div1",
+				data:{
+					text:"第一个text"
+				}
+			});
+			var vmBtn1 = new Vue({
+				el:"#btn1",
+				methods:{
+					changeText:function(e){
+						e.srcElement.style.background='red';
+						console.log(e.srcElement.dataset.aid);
+						div1.$data.text = "修改text";
+					}
+				}
+			});
+			var vmBtn2 = new Vue({
+				el:"#btn2",
+				data:{
+					text:"button"
+				}
+			});
+
+			function buttonClick() {
+				alert("button");
+			}
+			
+		</script>
+	</body>
+</html>
