@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>List</title>
-		<!-- 引入 Bootstrap -->
+		<!-- 引入 Bootstrap 样式-->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -28,7 +28,69 @@
 			.right{
 				margin-left: 60%;
 			}
-
+			.table td{
+				text-align: right;
+			}
+			.page-bar{
+				margin: 15px auto;
+				overflow: hidden;
+			}
+			.page-bar ul,li{
+				margin: 0px;
+				padding: 0px;
+			}
+			.page-bar li{
+				list-style: none;
+			}
+			.page-bar li:first-child>a{
+				margin-left: 0px;
+				margin-right: 10px;
+			}
+			.page-bar li:nth-child(2)>a{
+				margin-right: 10px;
+			}
+			.page-bar li:last-child>a{
+				margin-left: 10px;
+			}
+			.page-bar li:nth-last-child(2)>a{
+				margin-left: 10px;
+			}
+			.page-bar li:nth-last-child(3)>a{
+				margin-left: 10px;
+			}
+			.page-bar a{
+				border: 1px;
+				border-style: solid;
+				border-color: #ddd;
+				text-decoration: none;
+				position: relative;
+				float: left;
+				padding: 5px 11px;
+				margin-left: -1px;
+				color: #5D6062;
+				line-height: 1.42857143;
+				cursor: pointer;
+				/* margin-right: 20px; */
+			}
+			.page-bar a:hover{
+				background-color: #eee;
+			}
+			.page-bar a.banclick{
+				cursor: default;
+				background-color: #eee;
+			}
+			.page-bar .active a{
+				color: #fff;
+				cursor: default;
+				background-color: #286090;
+				border-color: #286090;
+			}
+			.page-bar i{
+				font-style: normal;
+				color: #286090;
+				margin: 0px 4px;
+				font-size: 13px;
+			}
 		</style>
 	</head>
 	<body>
@@ -38,7 +100,7 @@
 				<label for="exampleInputEmail1">成绩查询</label>
 				<div>
 				  <input type="text" class="form-control left" placeholder="请输入学生姓名" v-model="inputName" required>
-				  <input type="text" class="form-control right" placeholder="请输入学号" v-model="inputId" required>
+				  <input type="text" class="form-control right" onkeyup="this.value=this.value.replace(/[^0-9]/,'')" placeholder="请输入学号" v-model="inputId" required>
 				</div>
 				</div>
 				<div class="form-group">  
@@ -47,7 +109,23 @@
 				</div>
 			</form>
 			<p v-show="coursesData.length > 0">学生成绩{{coursesData.length}}</p>
-			<table class="table table-striped">
+			<div class="page-bar" v-show="page.all > 0">
+				<ul>
+					<li v-if="page.cur > 1"><a v-on:click="btnClick(1)">首页</a></li>
+					<li v-if="page.cur == 1"><a class="banclick">首页</a></li>
+					<li v-if="page.cur > 1"><a v-on:click="page.cur--,nextClick()">上一页</a></li>
+					<li v-if="page.cur == 1"><a class="banclick">上一页</a></li>
+					<li v-for="item in indexs" v-bind:class="{'active':page.cur == item}">
+						<a @click="btnClick(item)">{{item}}</a>
+					</li>
+					<li v-if="page.cur != page.all"><a v-on:click="page.cur++,nextClick()">下一页</a></li>
+					<li v-if="page.cur == page.all"><a class="banclick">下一页</a></li>
+					<li v-if="page.cur != page.all"><a v-on:click="btnClick(page.all)">末页</a></li>
+					<li v-if="page.cur == page.all"><a class="banclick">末页</a></li>
+					<li><a><i>{{page.cur}}</i><span class="caret"></span></a></li>
+				</ul>
+			</div>
+			<table class="table table-striped table-bordered ">
 				<thead>
 					<td>学号</td>
 					<td>姓名</td>
@@ -80,7 +158,13 @@
 				data:{
 					coursesData:[],
 					inputName:"",
-					inputId:""
+					inputId:"",
+					page:{
+						cur:1,
+						all:0,
+						pageSize:50
+					},
+					timeout:15000
 				},
 				methods:{
 					queryCourseByName:function(){
@@ -99,9 +183,10 @@
 							requestBody.name = _name;
 						}
 						
-						axios.post("http://localhost:8888/getCoursesBy",requestBody)
+						axios.post("http://localhost:8888/getCoursesBy",requestBody, {timeout: this.timeout})
 						  .then(function(rst){
 							  console.log(rst.data);
+							  vm.$data.page.all = 0;
 							  vm.$data.coursesData = rst.data.resultData;
 						  }).catch(function(err){
 							  console.log("请求失败");
@@ -112,15 +197,77 @@
 						.then(function(rst){
 							console.log("请求成功");
 							console.log(rst.data);
+							vm.$data.page.all = 0;
 							vm.$data.coursesData = rst.data.resultData;
 						}).catch(function(err){
 							console.log("请求失败");
 						})
+					},
+					queryByPage:function(page){
+						var requestBody;
+						if (page !== undefined) {
+							requestBody = page;
+						} else {
+							requestBody = {currentPageNum:1,pageSize:this.page.pageSize};
+						}
+						
+						axios.post("http://localhost:8888/getCoursesByPage",requestBody)
+						  .then(function(rst){
+							  console.log(rst.data);
+							  var resultData = rst.data.resultData;
+							  vm.$data.page.all = resultData.totalPageCount;
+							  vm.$data.coursesData = resultData.content;
+						  }).catch(function(err){
+							  console.log("请求失败");
+						  })
+					},
+					nextClick:function(){
+						var page = {currentPageNum:this.page.cur,pageSize:this.page.pageSize};
+						this.queryByPage(page);
+					},
+					btnClick:function(pageNum){
+						this.page.cur = pageNum;
+						var page = {currentPageNum:this.page.cur,pageSize:this.page.pageSize};
+						this.queryByPage(page);
 					}
 				},
-				
+				computed:{
+					indexs:function(){
+						var left = 1;
+						var right = this.page.all;
+						var numArr = [];
+						//总页数>=5的情况
+						if (this.page.all >= 5) {
+							// 当前页<=3的情况
+							if (this.page.cur <= 3) {
+								left = 1;
+								right = 5;
+							} else if (this.page.cur > 3 && this.page.cur < this.page.all - 2) {
+								// 当前页> 3的情况，并且当前页比最后页小2的情况
+								left = this.page.cur - 2;
+								right = this.page.cur + 2;
+							} else {
+								// 当前页是最后3页的情况
+								left = this.page.all - 4;
+								right = this.page.all;
+
+							}
+						}
+						while (left <= right) {
+							numArr.push(left)
+							left++;
+						}
+						return numArr;
+					}
+				},
+				watch:{
+					inputId:function(){
+						console.log(this.inputId);
+						this.inputId = this.inputId.replace('/0-9/g','');
+					}
+				},
 				created() {
-					this.queryAll();
+					this.queryByPage();
 				}
 			});
 		</script>

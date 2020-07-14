@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.bean.JsonResult;
+import com.example.demo.bean.PageRequest;
+import com.example.demo.bean.PageResult;
 import com.example.demo.bean.StudentCoursesBean;
 import com.example.demo.bean.StudentRequestBean;
 import com.example.demo.service.StudentCoursesService;
@@ -86,6 +89,26 @@ public class StudentCoursesController extends BaseController{
 			result.setResultData(new ArrayList<StudentCoursesBean>());
 		}
 		return result;
+	}
+	
+	@RequestMapping(value = "/getCoursesByPage", method = RequestMethod.POST)
+	@ResponseBody
+	public JsonResult getCoursesByPage(@RequestBody PageRequest request) {
+
+        JsonResult result = new JsonResult();
+        PageResult pageResult = studentCoursesService.getCoursesByPage(request);
+        
+        if (pageResult != null) {
+			result.setStatus("200");
+			result.setMsg("正常");
+			result.setResultData(pageResult);
+		} else {
+			result.setStatus("201");
+			result.setMsg("没有数据");
+			result.setResultData(new PageResult());
+		}
+        
+        return result;
 	}
 
 }
