@@ -35,6 +35,28 @@
     	TotalScore DESC
   </select>
   
+    <select id="getCoursesByPage" resultMap="studentCourse">
+      SELECT
+    	stu.studentId,
+    	stu.student,
+    	stu.name,
+    	sum( CASE WHEN co.class = "Chinese" THEN co.score END ) AS Chinese,
+    	sum( CASE WHEN co.class = "Math" THEN co.score END ) AS Math,
+    	sum( CASE WHEN co.class = "English" THEN co.score END ) AS English,
+    	sum( CASE WHEN co.class = "History" THEN co.score END ) AS History,
+    	sum( CASE WHEN co.class = "生物" THEN co.score END ) AS Biological,
+    	sum( co.score ) AS TotalScore 
+      FROM
+    	student AS stu
+    	LEFT JOIN courses AS co ON stu.student = co.student 
+      GROUP BY
+    	stu.studentId,
+    	stu.student,
+    	stu.name 
+      ORDER BY
+    	TotalScore DESC
+  </select>
+  
   <select id="getCoursesById" resultMap="studentCourse" >
     SELECT stu.studentId,stu.student,stu.name,
       sum(case when co.class = "Chinese" then co.score end) as Chinese,

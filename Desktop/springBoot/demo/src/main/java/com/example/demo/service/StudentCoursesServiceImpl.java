@@ -6,8 +6,13 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.bean.PageRequest;
+import com.example.demo.bean.PageResult;
 import com.example.demo.bean.StudentCoursesBean;
 import com.example.demo.mapper.StudentCoursesReaderMapper;
+import com.example.demo.utils.PageUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 public class StudentCoursesServiceImpl implements StudentCoursesService{
@@ -33,6 +38,23 @@ public class StudentCoursesServiceImpl implements StudentCoursesService{
 		return readerMapper.getCoursesById(null, name);
 	}
 
+	@Override
+	public PageResult getCoursesByPage(PageRequest request) {
+		
+		return PageUtil.getPageResult(request, getPageInfo(request));
+	}
 
+	/**
+     * 调用分页插件完成分页
+     * @param request
+     * @return
+     */
+	private PageInfo<StudentCoursesBean> getPageInfo(PageRequest request) {
+		int pageNum = request.getCurrentPageNum();
+		int pageSize = request.getPageSize();
+		PageHelper.startPage(pageNum, pageSize);
+		List<StudentCoursesBean> dbResult = readerMapper.getCoursesByPage();
+		return new PageInfo<StudentCoursesBean>(dbResult);
+	}
 
 }

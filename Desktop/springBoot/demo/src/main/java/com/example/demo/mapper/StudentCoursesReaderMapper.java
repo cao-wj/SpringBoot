@@ -12,6 +12,8 @@ public interface StudentCoursesReaderMapper {
 	
 	public List<StudentCoursesBean> getCourses();
 	
+	public List<StudentCoursesBean> getCoursesByPage();
+	
 	public List<StudentCoursesBean> getCoursesById(@Param(value = "studentId") Integer studentId, @Param(value = "name") String name);
 
 }
