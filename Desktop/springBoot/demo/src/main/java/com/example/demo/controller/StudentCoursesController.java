@@ -41,17 +41,10 @@ public class StudentCoursesController extends BaseController{
         List<StudentCoursesBean> list = null;
         JsonResult result = new JsonResult();
         if(hasKey){
-            //获取缓存
-            Object object = redisUtil.get("studentCourses");
-            
-            list = (ArrayList<StudentCoursesBean>) object;
-            logger.info("从redis缓存获取的数据:"+ list.size());
+        	list = getDataFromRedis();
         } else {
-        	list = studentCoursesService.getCourses();
-        	redisUtil.set("studentCourses", list, 20);
-        	logger.info("从数据库获取数据:"+list.size());
+        	list = saveData();      	
         }
-
 		
 		if (list != null) {
 			result.setStatus("200");
@@ -64,6 +57,30 @@ public class StudentCoursesController extends BaseController{
 		}
 		
 		return result;
+	}
+	
+	public synchronized List<StudentCoursesBean> saveData() {
+		List<StudentCoursesBean> list;
+		if (!redisUtil.hasKey("studentCourses")) {
+			list = studentCoursesService.getCourses();
+			logger.info("从数据库获取数据:"+list.size());
+			redisUtil.set("studentCourses", list, 400);
+			logger.info("存入redis成功！");
+		} else {
+			logger.info("redis中已有数据");
+			list = getDataFromRedis();
+		}
+		return list;
+	}
+	
+	public List<StudentCoursesBean> getDataFromRedis() {
+		List<StudentCoursesBean> list;
+		//获取缓存
+        Object object = redisUtil.get("studentCourses");
+        
+        list = (ArrayList<StudentCoursesBean>) object;
+        logger.info("从redis缓存获取的数据:"+ list.size());
+        return list;
 	}
 	
 	@PostMapping("/getCoursesBy")
