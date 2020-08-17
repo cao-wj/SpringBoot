@@ -79,7 +79,7 @@ public class StudentCoursesBean implements Serializable{
 	}
 
 	public void setHistoryCourse(String historyCourse) {
-		this.historyCourse = historyCourse == null? "" :  historyCourse;
+		this.historyCourse = historyCourse == null? "0" :  historyCourse;
 	}
 
 	public String getBiologicalCourse() {

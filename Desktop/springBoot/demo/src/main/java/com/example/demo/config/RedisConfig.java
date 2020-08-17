@@ -23,9 +23,9 @@ public class RedisConfig {
 	public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
 		RedisTemplate<Object, Object> template = new RedisTemplate<Object, Object>();
 		
-		//使用fastjson序列化
+		//使用Jackson2序列化
         Jackson2JsonRedisSerializer<Object> redisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
-        // value值的序列化采用fastJsonRedisSerializer
+        // value值的序列化采用Jackson2 RedisSerializer
         template.setValueSerializer(redisSerializer);
         template.setHashValueSerializer(redisSerializer);
         // key的序列化采用StringRedisSerializer
